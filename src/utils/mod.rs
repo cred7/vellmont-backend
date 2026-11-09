@@ -1,6 +1,6 @@
-pub fn current_timestamp() -> i64 {
-    chrono::Utc::now().timestamp()
-}
+// pub fn current_timestamp() -> i64 {
+//     chrono::Utc::now().timestamp()
+// }
 
 pub fn slugify(value: &str) -> String {
     let mut slug = String::new();
