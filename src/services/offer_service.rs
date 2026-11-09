@@ -12,6 +12,7 @@ use crate::{
 
 const OFFER_STATUSES: &[&str] = &["pending", "accepted", "rejected", "withdrawn"];
 
+#[allow(clippy::cmp_owned)]
 pub async fn create_public_offer(db: &PgPool, mut input: OfferSchema) -> Result<Offer, AppError> {
     input.contact_name = input.contact_name.trim().to_string();
     input.contact_email = input.contact_email.trim().to_ascii_lowercase();
