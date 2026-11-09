@@ -7,9 +7,6 @@ pub enum AppError {
     #[error("database error: {0}")]
     Database(sqlx::Error),
 
-    // #[error("validation failed: {0}")]
-    // Validation(String),
-
     #[error("bad request: {0}")]
     BadRequest(String),
 
@@ -54,7 +51,6 @@ impl AppError {
     pub fn code(&self) -> &'static str {
         match self {
             AppError::Database(_) => "database_error",
-            // AppError::Validation(_) => "validation_error",
             AppError::BadRequest(_) => "bad_request",
             AppError::Unauthorized => "unauthorized",
             AppError::Forbidden => "forbidden",
@@ -73,7 +69,6 @@ impl IntoResponse for AppError {
                 StatusCode::INTERNAL_SERVER_ERROR,
                 "database error".to_string(),
             ),
-            // AppError::Validation(message) => (StatusCode::BAD_REQUEST, message.clone()),
             AppError::BadRequest(message) => (StatusCode::BAD_REQUEST, message.clone()),
             AppError::Unauthorized => (StatusCode::UNAUTHORIZED, "unauthorized".to_string()),
             AppError::Forbidden => (StatusCode::FORBIDDEN, "forbidden".to_string()),
